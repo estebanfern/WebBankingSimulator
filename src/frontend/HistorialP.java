@@ -13,9 +13,8 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  */
 public class HistorialP extends javax.swing.JPanel {
 
-    /**
-     * Creates new form InicioP
-     */
+    
+    //Inicializacion de componentes
     public HistorialP() {
         initComponents();
     }
