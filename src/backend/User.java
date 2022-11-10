@@ -9,12 +9,15 @@ package backend;
  * @author esteb
  */
 public class User {
-    String nombre = "";
-    String apellido = "";
-    int ci = 0;
-    String email = "";
-    String celular = "";
-    int id = 0;
+    int id;
+    int numero_cuenta;
+    int saldo;
+    int pin;
+    String nombre;
+    String apellido;
+    int ci;
+    String email;
+    String celular;
     
     public User(){
         
