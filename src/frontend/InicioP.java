@@ -15,8 +15,24 @@ public class InicioP extends javax.swing.JPanel {
      */
     public InicioP() {
         initComponents();
+        
     }
 
+    public void setInfo(String cuenta){
+        try{
+            String [] arr = Cliente.getInfo(Integer.parseInt(cuenta));
+            userCuenta.setText( cuenta);
+            Titulo.setText("Bienvenido, " + arr[0]);
+            userNombre.setText(arr[0]);
+            userApellido.setText(arr[1]);
+            userCedula.setText(arr[2]);
+            userEmail.setText(arr[3]);
+            userCelular.setText(arr[4]);
+            
+        }catch (Exception e){
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

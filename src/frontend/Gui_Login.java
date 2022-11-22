@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 /**
  *
@@ -366,11 +367,15 @@ public class Gui_Login extends javax.swing.JFrame {
         nroCuenta = field_User.getText();
         String pin = field_Contrasena.getText();
         String [] arg = {nroCuenta};
-        if (pin.equals("1234") && nroCuenta.equals("0000")){
-            Gui_Principal.main(arg);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Cuenta Invalida");
+        try{
+            if (Cliente.validarLogin(Integer.parseInt(nroCuenta), pin)){
+                Gui_Principal.main(arg);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Cuenta Invalida.");
+            }
+        }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error.");
         }
     }//GEN-LAST:event_LabelBt_EntrarMouseClicked
 

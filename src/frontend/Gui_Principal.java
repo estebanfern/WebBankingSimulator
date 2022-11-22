@@ -23,11 +23,12 @@ public class Gui_Principal extends javax.swing.JFrame {
     Toolkit tools = Toolkit.getDefaultToolkit();
     private final Image icono = tools.getImage("src/resources/icon_1.png");
     int xMouse, yMouse;
-    JPanel seleccionado;
+    String [] user;
+    
     /**
      * Creates new form Gui_Principal
      */
-    public Gui_Principal() {
+    public Gui_Principal(String[] args) {
         this.setIconImage(icono);
         initComponents();
         LocalDate now = LocalDate.now();
@@ -39,7 +40,10 @@ public class Gui_Principal extends javax.swing.JFrame {
         Fecha.setText("Hoy es el "+dia+" de "+meses[mes - 1]+" de "+ano);
         this.setTitle("WebBanking Grupo 10");
         InicioP p1 = new InicioP();
+        p1.setInfo(args[0]);
+        user = args;
         showPanel(p1);
+        
     }
 
     /**
@@ -721,6 +725,7 @@ public class Gui_Principal extends javax.swing.JFrame {
     private void PanelInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelInicioMousePressed
         // TODO add your handling code here:
         InicioP p1 = new InicioP();
+        p1.setInfo(user[0]);
         showPanel(p1);
         resetColor(PanelDeposito);
         resetColor(PanelTransferencia);
@@ -926,7 +931,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Gui_Principal().setVisible(true);
+                new Gui_Principal(args).setVisible(true);
                 
             }
         });

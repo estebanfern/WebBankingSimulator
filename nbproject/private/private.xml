@@ -5,6 +5,10 @@
         <group>
             <file>file:/C:/Users/esteb/Documents/NetBeansProjects/WebBankingSimulator/src/backend/User.java</file>
             <file>file:/C:/Users/esteb/Documents/NetBeansProjects/WebBankingSimulator/src/backend/Validaciones.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/WebBankingSimulator/src/frontend/Gui_Login.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/WebBankingSimulator/src/frontend/Gui_Principal.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/WebBankingSimulator/src/frontend/Cliente.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/WebBankingSimulator/src/frontend/InicioP.java</file>
         </group>
     </open-files>
 </project-private>
