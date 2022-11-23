@@ -138,6 +138,11 @@ public class Cliente {
         String selectSql = "SELECT saldo FROM cuentas WHERE numero_cuenta = '" + userDestino + "'";
         Statement stmt = database.createStatement();
         ResultSet rs = stmt.executeQuery(selectSql);
+
+        if (monto > rs.getInt("saldo")){
+            throw new SQLException("Mensaje");
+        }
+
         int saldo = rs.getInt("saldo") + monto;
         stmt.close();
 
@@ -205,6 +210,11 @@ public class Cliente {
         String selectSql = "SELECT saldo FROM cuentas WHERE numero_cuenta = '" + user + "'";
         Statement stmt = database.createStatement();
         ResultSet rs = stmt.executeQuery(selectSql);
+
+        if (monto > rs.getInt("saldo")){
+            throw new SQLException("Mensaje");
+        }
+
         int saldo = rs.getInt("saldo") - monto;
         stmt.close();
 
@@ -274,6 +284,11 @@ public class Cliente {
         String selectSql = "SELECT saldo FROM cuentas WHERE numero_cuenta = '" + user + "'";
         Statement stmt = database.createStatement();
         ResultSet rs = stmt.executeQuery(selectSql);
+
+        if (monto > rs.getInt("saldo")){
+            throw new SQLException("Mensaje");
+        }
+
         int saldo = rs.getInt("saldo") - monto;
         stmt.close();
 

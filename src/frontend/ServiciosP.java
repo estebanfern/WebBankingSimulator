@@ -334,6 +334,11 @@ public class ServiciosP extends javax.swing.JPanel {
         BtAnde.setBackground(new Color(13, 71, 161));
         BtCopaco.setBackground(new Color(13, 71, 161));
         BtNetflix.setBackground(new Color(13, 71, 161));
+        
+        SepEssap.setBackground(new Color(13, 71, 161));
+        SepAnde.setBackground(new Color(13, 71, 161));
+        SepCopaco.setBackground(new Color(13, 71, 161));
+        SepNetflix.setBackground(new Color(13, 71, 161));
     }//GEN-LAST:event_BtEssapMousePressed
     
     private void BtAndeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtAndeMousePressed
@@ -343,6 +348,11 @@ public class ServiciosP extends javax.swing.JPanel {
         BtEssap.setBackground(new Color(13, 71, 161));
         BtCopaco.setBackground(new Color(13, 71, 161));
         BtNetflix.setBackground(new Color(13, 71, 161));
+        
+        SepEssap.setBackground(new Color(13, 71, 161));
+        SepAnde.setBackground(new Color(13, 71, 161));
+        SepCopaco.setBackground(new Color(13, 71, 161));
+        SepNetflix.setBackground(new Color(13, 71, 161));
     }//GEN-LAST:event_BtAndeMousePressed
     
     private void BtCopacoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtCopacoMousePressed
@@ -352,6 +362,11 @@ public class ServiciosP extends javax.swing.JPanel {
         BtEssap.setBackground(new Color(13, 71, 161));
         BtAnde.setBackground(new Color(13, 71, 161));
         BtNetflix.setBackground(new Color(13, 71, 161));
+        
+        SepEssap.setBackground(new Color(13, 71, 161));
+        SepAnde.setBackground(new Color(13, 71, 161));
+        SepCopaco.setBackground(new Color(13, 71, 161));
+        SepNetflix.setBackground(new Color(13, 71, 161));
     }//GEN-LAST:event_BtCopacoMousePressed
     
     private void BtNetflixMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtNetflixMousePressed
@@ -361,6 +376,11 @@ public class ServiciosP extends javax.swing.JPanel {
         BtEssap.setBackground(new Color(13, 71, 161));
         BtAnde.setBackground(new Color(13, 71, 161));
         BtCopaco.setBackground(new Color(13, 71, 161));
+        
+        SepEssap.setBackground(new Color(13, 71, 161));
+        SepAnde.setBackground(new Color(13, 71, 161));
+        SepCopaco.setBackground(new Color(13, 71, 161));
+        SepNetflix.setBackground(new Color(13, 71, 161));
     }//GEN-LAST:event_BtNetflixMousePressed
     
     
