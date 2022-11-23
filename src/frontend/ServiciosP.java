@@ -12,13 +12,15 @@ import java.awt.Color;
  * @author esteb
  */
 public class ServiciosP extends javax.swing.JPanel {
+    String user;
     int seleccion = -1;
     String [] servicios = {"ESSAP", "ANDE", "COPACO", "NETFLIX"};
     /**
      * Creates new form InicioP
      */
-    public ServiciosP() {
+    public ServiciosP(String args) {
         initComponents();
+        user = args;
     }
 
     /**
@@ -247,8 +249,14 @@ public class ServiciosP extends javax.swing.JPanel {
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:
         if (seleccion >= 0){
-            JOptionPane.showMessageDialog(null,"Servicio pagado con éxito" + "\nServicio: " + 
-                                            servicios[seleccion] + "\nMonto: " + TxtMonto.getText());
+            try{
+                if (Integer.parseInt(TxtMonto.getText()) <= 0){
+                    throw new Exception("");
+                }
+                Cliente.servicio(Integer.parseInt(user), Integer.parseInt(TxtMonto.getText()), seleccion);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null,"Ingrese correctamente los datos");
+            }
         }else{
             JOptionPane.showMessageDialog(null,"Por favor\nSeleccione un servicio");
         }

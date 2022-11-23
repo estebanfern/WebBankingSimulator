@@ -6,18 +6,26 @@ package frontend;
 
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author esteb
  */
 public class TarjetasP extends javax.swing.JPanel {
-
+    private String user;
     /**
      * Creates new form InicioP
      */
-    public TarjetasP() {
+    public TarjetasP(String args) {
         initComponents();
+        user = args;
+        try{
+            DefaultTableModel modelo = Cliente.getTarjetas(Integer.parseInt(user), tabla);
+            tabla.setModel(modelo);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -38,6 +46,8 @@ public class TarjetasP extends javax.swing.JPanel {
         LbMonto = new javax.swing.JLabel();
         TxtMonto = new javax.swing.JTextField();
         Sep2 = new javax.swing.JSeparator();
+        ScPanel = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(960, 700));
@@ -58,7 +68,7 @@ public class TarjetasP extends javax.swing.JPanel {
         LbSeleccione.setForeground(new java.awt.Color(0, 0, 0));
         LbSeleccione.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbSeleccione.setText("Seleccione su tarjeta e ingrese el monto a pagar");
-        add(LbSeleccione, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 960, 70));
+        add(LbSeleccione, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 960, 70));
 
         jPanel2.setBackground(new java.awt.Color(13, 71, 161));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 71, 161)));
@@ -86,13 +96,13 @@ public class TarjetasP extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/dollar.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 230, 40));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 230, 100));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 230, 100));
 
         LbMonto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         LbMonto.setForeground(new java.awt.Color(0, 0, 0));
         LbMonto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbMonto.setText("Monto a pagar:");
-        add(LbMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 280, -1));
+        add(LbMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 280, -1));
 
         TxtMonto.setBackground(new java.awt.Color(255, 255, 255));
         TxtMonto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -105,8 +115,48 @@ public class TarjetasP extends javax.swing.JPanel {
                 TxtMontoMousePressed(evt);
             }
         });
-        add(TxtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 510, 280, 30));
-        add(Sep2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 280, 10));
+        add(TxtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 280, 30));
+        add(Sep2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 570, 280, 10));
+
+        ScPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ScPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        tabla.setBackground(new java.awt.Color(255, 255, 255));
+        tabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 71, 161)));
+        tabla.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Marca", "Numero", "Vencimiento"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tabla.setCellSelectionEnabled(false);
+        tabla.setGridColor(new java.awt.Color(13, 71, 161));
+        tabla.setRowSelectionAllowed(true);
+        tabla.setSelectionBackground(new java.awt.Color(25, 118, 210));
+        tabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        ScPanel.setViewportView(tabla);
+
+        add(ScPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 860, 250));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
@@ -125,7 +175,29 @@ public class TarjetasP extends javax.swing.JPanel {
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Tarjeta pagada");
+        int filaSelec = tabla.getSelectedRow();
+        int tipo = 0;
+        String [] marcas = {"VISA", "MASTERCARD"};
+        if (filaSelec >= 0){
+            String nroTarjeta = tabla.getValueAt(filaSelec, 1).toString();
+            try{
+                int monto = Integer.parseInt(TxtMonto.getText());
+                if (monto <= 0) {
+                    throw new Exception("");
+                }
+                if (tabla.getValueAt(filaSelec, 0).toString().equals("MASTERCARD")){
+                    tipo = 1;
+                }
+                
+                Cliente.pagoTc(Integer.valueOf(user), monto, nroTarjeta, tipo);
+                
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Monto invalido");
+                
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una tarjeta.");
+        }
     }//GEN-LAST:event_jPanel2MousePressed
 
     private void TxtMontoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TxtMontoMousePressed
@@ -141,11 +213,13 @@ public class TarjetasP extends javax.swing.JPanel {
     private javax.swing.JPanel Borde;
     private javax.swing.JLabel LbMonto;
     private javax.swing.JLabel LbSeleccione;
+    private javax.swing.JScrollPane ScPanel;
     private javax.swing.JSeparator Sep2;
     private javax.swing.JLabel TituloTarjetas;
     private javax.swing.JTextField TxtMonto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

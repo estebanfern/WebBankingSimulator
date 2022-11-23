@@ -788,7 +788,7 @@ public class Gui_Principal extends javax.swing.JFrame {
 
     private void PanelServiciosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelServiciosMousePressed
         // TODO add your handling code here:
-        ServiciosP p4 = new ServiciosP();
+        ServiciosP p4 = new ServiciosP(user[0]);
         showPanel(p4);
         resetColor(PanelDeposito);
         resetColor(PanelTransferencia);
@@ -806,10 +806,10 @@ public class Gui_Principal extends javax.swing.JFrame {
         resetSep(SepHistorial);
         setSep(SepServicios);
     }//GEN-LAST:event_PanelServiciosMousePressed
-
+    
     private void PanelTarjetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelTarjetasMousePressed
         // TODO add your handling code here:
-        TarjetasP p5 = new TarjetasP();
+        TarjetasP p5 = new TarjetasP(user[0]);
         showPanel(p5);
         resetColor(PanelDeposito);
         resetColor(PanelTransferencia);
