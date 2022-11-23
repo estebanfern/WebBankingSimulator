@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package frontend;
+import backend.PasswordStorage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,13 +40,16 @@ public class Cliente {
         String selectSql = "SELECT pin FROM cuentas WHERE numero_cuenta = '" + user + "'";
         Statement stmt = database.createStatement();
         ResultSet rs = stmt.executeQuery(selectSql);
+        //System.out.println("PIN de usr = " + pin);
+        //System.out.println("PIN de db = " + rs.getString("pin"));
         try{
-            if (rs.getString("pin").equals(pin)){
+            if (PasswordStorage.verifyPassword(pin, rs.getString("pin"))){
                 database.close();
                 return true;
             }
         }catch (Exception e){
             //JOptionPane.showMessageDialog(null, "Ingrese una cuenta valida");
+            return false;
         }
     database.close();
     return false;
