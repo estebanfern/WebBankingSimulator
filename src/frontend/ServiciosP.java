@@ -166,7 +166,7 @@ public class ServiciosP extends javax.swing.JPanel {
 
         LogoAnde.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogoAnde.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ande.png"))); // NOI18N
-        BtAnde.add(LogoAnde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 70));
+        BtAnde.add(LogoAnde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
 
         SepAnde.setBackground(new java.awt.Color(13, 71, 161));
         BtAnde.add(SepAnde, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 90, -1));
@@ -191,7 +191,7 @@ public class ServiciosP extends javax.swing.JPanel {
 
         LogoCopaco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogoCopaco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/copaco.png"))); // NOI18N
-        BtCopaco.add(LogoCopaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 70));
+        BtCopaco.add(LogoCopaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
 
         SepCopaco.setBackground(new java.awt.Color(13, 71, 161));
         BtCopaco.add(SepCopaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 90, -1));
@@ -216,7 +216,7 @@ public class ServiciosP extends javax.swing.JPanel {
 
         LogoNetflix.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LogoNetflix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/netflix.png"))); // NOI18N
-        BtNetflix.add(LogoNetflix, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 70));
+        BtNetflix.add(LogoNetflix, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
 
         SepNetflix.setBackground(new java.awt.Color(13, 71, 161));
         BtNetflix.add(SepNetflix, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 90, -1));

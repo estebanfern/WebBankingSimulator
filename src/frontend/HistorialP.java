@@ -4,6 +4,7 @@
  */
 package frontend;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
@@ -12,11 +13,12 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
  * @author esteb
  */
 public class HistorialP extends javax.swing.JPanel {
-
+    private String user;
     
     //Inicializacion de componentes
-    public HistorialP() {
+    public HistorialP(String args) {
         initComponents();
+        user = args;
     }
 
     /**
@@ -34,7 +36,8 @@ public class HistorialP extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        PanelContenido = new javax.swing.JPanel();
+        ScPanel = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(960, 700));
@@ -55,7 +58,7 @@ public class HistorialP extends javax.swing.JPanel {
         LbConsulte.setForeground(new java.awt.Color(0, 0, 0));
         LbConsulte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbConsulte.setText("Consulte su historial de transacciones");
-        add(LbConsulte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 960, 70));
+        add(LbConsulte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 960, 70));
 
         jPanel2.setBackground(new java.awt.Color(13, 71, 161));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 71, 161)));
@@ -83,11 +86,51 @@ public class HistorialP extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/historial.png"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 230, 40));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 230, 100));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 580, 230, 100));
 
-        PanelContenido.setBackground(new java.awt.Color(255, 255, 255));
-        PanelContenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 620, 310));
+        ScPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ScPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        tabla.setBackground(new java.awt.Color(255, 255, 255));
+        tabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 71, 161)));
+        tabla.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "Descripción", "Monto"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tabla.setGridColor(new java.awt.Color(13, 71, 161));
+        tabla.setSelectionBackground(new java.awt.Color(25, 118, 210));
+        tabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        ScPanel.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setMinWidth(150);
+            tabla.getColumnModel().getColumn(0).setMaxWidth(150);
+            tabla.getColumnModel().getColumn(2).setMinWidth(150);
+            tabla.getColumnModel().getColumn(2).setMaxWidth(150);
+        }
+
+        add(ScPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 860, 320));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
@@ -106,23 +149,24 @@ public class HistorialP extends javax.swing.JPanel {
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Historial");
-        PanelHistorial muestra = new PanelHistorial();
-        muestra.setSize(620, 310);
-        PanelContenido.removeAll();
-        PanelContenido.add(muestra, new AbsoluteConstraints(0,0,-1,-1));
-        PanelContenido.revalidate();
-        PanelContenido.repaint();
+        try{
+            DefaultTableModel modelo = Cliente.getTransacciones(Integer.parseInt(user), tabla);
+            tabla.setModel(modelo);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_jPanel2MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Borde;
     private javax.swing.JLabel LbConsulte;
-    private javax.swing.JPanel PanelContenido;
+    private javax.swing.JScrollPane ScPanel;
     private javax.swing.JLabel TituloHistorial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

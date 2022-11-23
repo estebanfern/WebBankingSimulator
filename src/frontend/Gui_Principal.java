@@ -851,7 +851,7 @@ public class Gui_Principal extends javax.swing.JFrame {
 
     private void PanelHistorialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelHistorialMousePressed
         // TODO add your handling code here:
-        HistorialP p7 = new HistorialP();
+        HistorialP p7 = new HistorialP(user[0]);
         showPanel(p7);
         resetColor(PanelDeposito);
         resetColor(PanelTransferencia);

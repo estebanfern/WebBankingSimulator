@@ -106,7 +106,7 @@ public class Cliente {
 
         //Se cargan los detalles en la tabla deposito
         stmt = database.createStatement();
-        query = "INSERT INTO depositos (deposito_id,tipo,numero_cheque) VALUES("+ String.valueOf(transaccion_id) + "," + String.valueOf(0) + "," + String.valueOf(0) +")";
+            query = "INSERT INTO depositos (deposito_id,tipo,numero_cheque) VALUES("+ String.valueOf(transaccion_id) + "," + String.valueOf(tipo) + "," + String.valueOf(nroCheque) +")";
         stmt.executeUpdate(query);
         stmt.close();
         
@@ -184,6 +184,7 @@ public class Cliente {
         stmt.executeUpdate(query);
         stmt.close();
 
+        database.close();
         JOptionPane.showMessageDialog(null, "Ticket generado\nTransferencia entre Cuentas\nNro de cuenta origen: " + 
                                                                         "000" + userOrigen + "\nNro de cuenta destino: " 
                                                                         + "000" + userDestino + "\nFecha: " + fecha + "\nMonto: " + monto);
@@ -229,6 +230,7 @@ public class Cliente {
         stmt.executeUpdate(query);
         stmt.close();
 
+        database.close();
         String [] servicios = {"ESSAP", "ANDE", "COPACO", "NETFLIX"};
         JOptionPane.showMessageDialog(null, "Ticket generado\nPago de Servicio\nNro de cuenta: " + 
                                                                 "000" + user + "\nFecha: " + fecha + "\nMonto: " + monto + 
@@ -254,6 +256,7 @@ public class Cliente {
             impr(arr);
         }
 
+        database.close();
         return modelo;
     }
 
@@ -303,11 +306,120 @@ public class Cliente {
         stmt.executeUpdate(query);
         stmt.close();
 
+        database.close();
+
         String [] tarjetas = {"VISA", "MASTERCARD"};
         JOptionPane.showMessageDialog(null, "Ticket generado\nPago de Tarjeta\nNro de cuenta: " + 
                                                                 "000" + user + "\nFecha: " + fecha + "\nMonto: " + monto + 
                                                                     "\nTarjeta: " + tarjetas[tipo] + " " + nroTarjeta);
         	
+    }
+    
+    public static DefaultTableModel getTransacciones(int user, JTable tabla) throws SQLException{
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        
+        Connection database = conectar();
+        String selectSql = "SELECT * FROM transacciones WHERE cuenta_id = '" + user + "'";
+        Statement stmt = database.createStatement();
+        ResultSet rs = stmt.executeQuery(selectSql);
+        
+        String [] arr = new String[3];
+        int op;
+        while (rs.next()){
+            op = rs.getInt("tipo");
+
+            arr[0] = rs.getString("fecha");
+            arr[2] = String.valueOf(rs.getInt("monto"));
+
+            if (op == 0){
+                arr[1] = getDescripcionDp(rs.getInt("transaccion_id"));
+            }else if (op == 1){
+                arr[1] = getDescripcionTf(rs.getInt("transaccion_id"), rs.getInt("monto"));
+            }else if (op == 2){
+                arr[1] = getDescripcionSv(rs.getInt("transaccion_id"));
+            }else if (op == 3){
+                arr[1] = getDescripcionTc(rs.getInt("transaccion_id"));
+            }
+            
+            
+            
+            modelo.addRow(arr);
+        }
+        
+        
+        database.close();
+        return modelo;
+    }
+    
+    public static String getDescripcionDp(int id) throws SQLException{
+        
+        Connection database = conectar();
+        String selectSql = "SELECT * FROM depositos WHERE deposito_id = '" + id + "'";
+        Statement stmt = database.createStatement();
+        ResultSet rs = stmt.executeQuery(selectSql);
+
+        System.out.println(rs.getInt("tipo"));
+        if (rs.getInt("tipo") == 0){
+            database.close();
+            return "Deposito en Efectivo";
+        }else{
+            int nroCheque = rs.getInt("numero_cheque");
+            database.close();
+            return "Deposito en Cheque nro " + nroCheque;
+        }
+        
+    }
+    
+    public static String getDescripcionTf(int id, int monto) throws SQLException{
+        Connection database = conectar();
+        
+        if (monto < 0){
+            String selectSql = "SELECT * FROM transacciones WHERE transaccion_id = '" + String.valueOf(id+1) + "'";
+            Statement stmt = database.createStatement();
+            ResultSet rs = stmt.executeQuery(selectSql);
+            int info = rs.getInt("cuenta_id");
+            database.close();
+            return "Transferencia realizada a la cuenta nro 000" + info;
+        }else{
+            String selectSql = "SELECT * FROM transacciones WHERE transaccion_id = '" + String.valueOf(id-1) + "'";
+            Statement stmt = database.createStatement();
+            ResultSet rs = stmt.executeQuery(selectSql);
+            int info = rs.getInt("cuenta_id");
+            database.close();
+            return "Transferencia recibida de la cuenta nro 000" + info;
+        }
+    }
+    
+    public static String getDescripcionSv(int id) throws SQLException {
+        Connection database = conectar();
+        String selectSql = "SELECT numero_servicios FROM servicios WHERE servicio_id = '" + String.valueOf(id) + "'";
+        Statement stmt = database.createStatement();
+        ResultSet rs = stmt.executeQuery(selectSql);
+        
+        String [] servicios = {"ESSAP", "ANDE", "COPACO", "NETFLIX"};
+        
+        int op = rs.getInt("numero_servicios");
+        database.close();
+        return "Pago de servicio de " + servicios[op];
+    }
+    
+    public static String getDescripcionTc(int id) throws SQLException {
+        Connection database = conectar();
+        String selectSql = "SELECT tarjeta_id FROM pago_tarjetas WHERE pago_id = '" + String.valueOf(id) + "'";
+        Statement stmt = database.createStatement();
+        ResultSet rs = stmt.executeQuery(selectSql);
+        int tc_id = rs.getInt("tarjeta_id");
+        String [] tarjetas = {"VISA", "MASTERCARD"};
+        stmt.close();
+
+        selectSql = "SELECT * FROM tarjetas WHERE tarjeta_id = '" + String.valueOf(tc_id) + "'";
+        stmt = database.createStatement();
+        rs = stmt.executeQuery(selectSql);
+
+        int tipo = rs.getInt("tipo_tarjeta");
+        String nroTc = rs.getString("numero_tarjeta");
+        database.close();
+        return "Pago de TC " + tarjetas[tipo] + " " + nroTc;
     }
     
     
