@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 
 
 
-//import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -156,16 +156,43 @@ public class Cliente {
         stmt.close();
         rs.close();
 
+        //Se crea una transaccion
+        stmt = database.createStatement();
+        String query = "INSERT INTO transacciones (cuenta_id,tipo,fecha,monto) VALUES('"+ userOrigen + "',"+
+                                                    String.valueOf(1) + ",'" + fecha + "',"+ String.valueOf(-1*monto) + 
+                                                    ")" + ";" + "INSERT INTO transacciones (cuenta_id,tipo,fecha,monto) VALUES('"+ userDestino + "',"+
+                                                    String.valueOf(1) + ",'" + fecha + "',"+ String.valueOf(monto) + 
+                                                    ")" ;
+        stmt.executeUpdate(query);
+        stmt.close();
 
+        //Se obtiene el ultimo id
+        stmt = database.createStatement();
+        query = "SELECT MAX(transaccion_id) AS transaccion_id  FROM transacciones";
+        rs = stmt.executeQuery(query);
+        int transaccion_id = rs.getInt("transaccion_id"); // Valor del ultimo ID 
+        stmt.close();
 
+        //Se cargan los detalles en la tabla transferencias
+        stmt = database.createStatement();
+        query = "INSERT INTO transferencias (transferencia_id, id_origen, id_destino) VALUES("+ String.valueOf(transaccion_id-1) 
+                + "," + String.valueOf(userOrigen) + "," + String.valueOf(userDestino) +")" + ";" + 
+                "INSERT INTO transferencias (transferencia_id, id_origen, id_destino) VALUES("+ String.valueOf(transaccion_id) 
+                + "," + String.valueOf(userOrigen) + "," + String.valueOf(userDestino) +")";
+        stmt.executeUpdate(query);
+        stmt.close();
 
+        JOptionPane.showMessageDialog(null, "Ticket generado\nTransferencia entre Cuentas\nNro de cuenta origen: " + 
+                                                                        "000" + userOrigen + "\nNro de cuenta destino: " 
+                                                                        + "000" + userDestino + "\nFecha: " + fecha + "\nMonto: " + monto);
 
     }
     
     
+    
     public static void main(String [] args){
         try{
-            transferir(1, 2, 6000000);
+            transferir(1, 2, 3000000);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

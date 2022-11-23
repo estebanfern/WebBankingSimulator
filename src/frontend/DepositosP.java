@@ -333,7 +333,7 @@ public class DepositosP extends javax.swing.JPanel {
                 if (monto <= 0){
                     throw new Exception("");
                 }
-                JOptionPane.showMessageDialog(null, "Ticket generado\nDeposito en Cuenta\nNro de cuenta: " + cuenta + "\nFecha: " + fecha + "\nTipo de deposito: " + tipos[tipo]);
+                JOptionPane.showMessageDialog(null, "Ticket generado\nDeposito en Cuenta\nNro de cuenta: " + cuenta + "\nMonto: " + monto + "\nFecha: " + fecha + "\nTipo de deposito: " + tipos[tipo]);
             }else{
                 tipo = 1;
                 monto = Integer.parseInt(TxtMonto.getText());
@@ -341,7 +341,7 @@ public class DepositosP extends javax.swing.JPanel {
                 if (monto <= 0 || nroCheque <= 0){
                     throw new Exception("");
                 }
-                JOptionPane.showMessageDialog(null, "Ticket generado\nDeposito en Cuenta\nNro de cuenta: " + cuenta + "\nFecha: " + fecha + "\nTipo de deposito: " + tipos[tipo] + "\nCheque nro: " + nroCheque);
+                JOptionPane.showMessageDialog(null, "Ticket generado\nDeposito en Cuenta\nNro de cuenta: " + cuenta + "\nMonto: " + monto + "\nFecha: " + fecha + "\nTipo de deposito: " + tipos[tipo] + "\nCheque nro: " + nroCheque);
             }
             Cliente.deposito(Integer.valueOf(cuenta), monto, tipo, nroCheque);
             

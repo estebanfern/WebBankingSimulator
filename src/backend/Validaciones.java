@@ -49,9 +49,12 @@ public class Validaciones {
         try{
             //Integer num = Integer.parseInt(monto);
             Integer.parseInt(monto);
+            if (Integer.parseInt(monto) < 0){
+                throw new Exception("Error, monto negativo");
+            }
             return true;
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "ERROR, solo se permiten valores enteros.");
+            JOptionPane.showMessageDialog(null, "ERROR, solo se permiten valores enteros positivos.");
             return false;
         }
         

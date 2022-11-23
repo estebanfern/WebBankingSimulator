@@ -12,12 +12,14 @@ import javax.swing.JOptionPane;
  * @author esteb
  */
 public class TransferenciasP extends javax.swing.JPanel {
+    String user;
 
     /**
      * Creates new form InicioP
      */
-    public TransferenciasP() {
+    public TransferenciasP(String args) {
         initComponents();
+        user= args;
     }
 
     /**
@@ -180,8 +182,14 @@ public class TransferenciasP extends javax.swing.JPanel {
              * Validación de PIN de transacción y transferencia
              */
             if (Validaciones.validarTransaccion()){
-                JOptionPane.showMessageDialog(null,"Transferencia realizada" + "\nCuenta destino: " + TxtCuenta.getText() +
-                "\nMonto: " + TxtMonto.getText());
+                try{
+                    Cliente.transferir(Integer.parseInt(user), Integer.parseInt(TxtCuenta.getText()), Integer.parseInt(TxtMonto.getText()));
+                }
+                catch (Exception e){
+                    
+                }
+                //JOptionPane.showMessageDialog(null,"Transferencia realizada" + "\nCuenta destino: " + TxtCuenta.getText() +
+                //"\nMonto: " + TxtMonto.getText());
             }else{
                 JOptionPane.showMessageDialog(null, "Se ha producido un error en la transacción.");
             }

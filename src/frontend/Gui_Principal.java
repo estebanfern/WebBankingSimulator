@@ -767,7 +767,7 @@ public class Gui_Principal extends javax.swing.JFrame {
 
     private void PanelTransferenciaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelTransferenciaMousePressed
         // TODO add your handling code here:
-        TransferenciasP p3 = new TransferenciasP();
+        TransferenciasP p3 = new TransferenciasP(user[0]);
         showPanel(p3);
         resetColor(PanelDeposito);
         resetColor(PanelInicio);
