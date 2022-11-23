@@ -22,7 +22,7 @@ public class InicioP extends javax.swing.JPanel {
         try{
             String [] arr = Cliente.getInfo(Integer.parseInt(cuenta));
             userCuenta.setText( cuenta);
-            Titulo.setText("Bienvenido, " + arr[0]);
+            Titulo.setText("¡Bienvenido, " + arr[0] + "!");
             userNombre.setText(arr[0]);
             userApellido.setText(arr[1]);
             userCedula.setText(arr[2]);

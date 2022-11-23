@@ -5,6 +5,9 @@
 package frontend;
 
 import backend.Formatear;
+import javax.swing.JOptionPane;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -83,8 +86,16 @@ public class PanelSaldo extends javax.swing.JPanel {
         add(TxtSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 600, 130));
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setSaldo(String saldo){
-        TxtSaldo.setText(Formatear.monto(saldo));
+    public void setSaldo(String cuenta){
+        try{
+            String saldo = Formatear.monto(String.valueOf(Cliente.getSaldo(Integer.parseInt(cuenta))));
+            LocalDate fecha = LocalDate.now();
+            LocalTime hora = LocalTime.now();
+            TxtSaldo.setText(saldo);
+            JOptionPane.showMessageDialog(null, "Ticket creado\nConsulta de Saldo\nFecha: " + fecha + "\nHora: " + hora + "\nSaldo: " + saldo + "\nGracias por utilizar el sistema!");
+        }catch (Exception e){
+            System.out.println("Algo salió mal");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -746,7 +746,7 @@ public class Gui_Principal extends javax.swing.JFrame {
 
     private void PanelDepositoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDepositoMousePressed
         // TODO add your handling code here:
-        DepositosP p2 = new DepositosP();
+        DepositosP p2 = new DepositosP(user[0]);
         showPanel(p2);
         resetColor(PanelInicio);
         resetColor(PanelTransferencia);
@@ -830,7 +830,7 @@ public class Gui_Principal extends javax.swing.JFrame {
 
     private void PanelSaldoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelSaldoMousePressed
         // TODO add your handling code here:
-        SaldoP p6 = new SaldoP();
+        SaldoP p6 = new SaldoP(user[0]);
         showPanel(p6);
         resetColor(PanelDeposito);
         resetColor(PanelTransferencia);

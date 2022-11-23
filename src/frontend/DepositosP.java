@@ -5,6 +5,8 @@
 package frontend;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -12,14 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class DepositosP extends javax.swing.JPanel {
     String seleccionado = "";
+    String cuenta;
     /**
      * Creates new form InicioP
      */
-    public DepositosP() {
+    public DepositosP(String args) {
         initComponents();
         seleccionado = "efectivo";
         TxtNroCheque.setEditable(false);
         TxtNroCheque.setText("No disponible");
+        cuenta = args;
     }
 
     /**
@@ -316,11 +320,38 @@ public class DepositosP extends javax.swing.JPanel {
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:
-        if (seleccionado.equals("efectivo")){
-            JOptionPane.showMessageDialog(null,"Deposito en efectivo\nMonto: " + TxtMonto.getText());
-        }else{
-            JOptionPane.showMessageDialog(null, "Deposito en cheque\nNro cheque: " + TxtNroCheque.getText() + "\nMonto: "  + TxtMonto.getText());
+        String [] tipos = {"Efectivo", "Cheque"};
+        int nroCheque = 0;
+        int monto;
+        int tipo = 0;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+        LocalDateTime now = LocalDateTime.now();  
+        String fecha = dtf.format(now);
+        try{
+            if (seleccionado.equals("efectivo")){
+                monto = Integer.parseInt(TxtMonto.getText());
+                if (monto <= 0){
+                    throw new Exception("");
+                }
+                JOptionPane.showMessageDialog(null, "Ticket generado\nDeposito en Cuenta\nNro de cuenta: " + cuenta + "\nFecha: " + fecha + "\nTipo de deposito: " + tipos[tipo]);
+            }else{
+                tipo = 1;
+                monto = Integer.parseInt(TxtMonto.getText());
+                nroCheque = Integer.parseInt(TxtNroCheque.getText());
+                if (monto <= 0 || nroCheque <= 0){
+                    throw new Exception("");
+                }
+                JOptionPane.showMessageDialog(null, "Ticket generado\nDeposito en Cuenta\nNro de cuenta: " + cuenta + "\nFecha: " + fecha + "\nTipo de deposito: " + tipos[tipo] + "\nCheque nro: " + nroCheque);
+            }
+            Cliente.deposito(Integer.valueOf(cuenta), monto, tipo, nroCheque);
+            
+            
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ingrese datos válidos");
         }
+        
+        
     }//GEN-LAST:event_jPanel2MousePressed
 
 

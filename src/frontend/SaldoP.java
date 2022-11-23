@@ -14,12 +14,13 @@ import backend.Validaciones;
  * @author esteb
  */
 public class SaldoP extends javax.swing.JPanel {
-
+    String cuenta;
     /**
      * Creates new form InicioP
      */
-    public SaldoP() {
+    public SaldoP(String args) {
         initComponents();
+        cuenta = args;
     }
 
     /**
@@ -112,7 +113,7 @@ public class SaldoP extends javax.swing.JPanel {
         if (Validaciones.validarTransaccion()){
             PanelSaldo muestra = new PanelSaldo();
             muestra.setSize(620, 310);
-            muestra.setSaldo("1525000");
+            muestra.setSaldo(cuenta);
             PanelContenido.removeAll();
             PanelContenido.add(muestra, new AbsoluteConstraints(0,0,-1,-1));
             PanelContenido.revalidate();
