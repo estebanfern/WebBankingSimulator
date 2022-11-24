@@ -123,7 +123,7 @@ public class TarjetasP extends javax.swing.JPanel {
 
         tabla.setBackground(new java.awt.Color(255, 255, 255));
         tabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(13, 71, 161)));
-        tabla.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tabla.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,9 +149,8 @@ public class TarjetasP extends javax.swing.JPanel {
             }
         });
         tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tabla.setCellSelectionEnabled(false);
         tabla.setGridColor(new java.awt.Color(13, 71, 161));
-        tabla.setRowSelectionAllowed(true);
+        tabla.setRowHeight(35);
         tabla.setSelectionBackground(new java.awt.Color(25, 118, 210));
         tabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
         ScPanel.setViewportView(tabla);

@@ -27,7 +27,7 @@ public class Cliente {
     public static Connection conectar(){
         Connection database = null;
         try{
-            database = DriverManager.getConnection("jdbc:sqlite:data.db");
+            database = DriverManager.getConnection("jdbc:sqlite:src/db/data.db");
             return database;
         }catch (Exception e){
             System.out.println("Ha ocurrido un error al conectarse");
@@ -267,7 +267,7 @@ public class Cliente {
             arr[1] = rs.getString("numero_tarjeta");
             arr[2] = rs.getString("fechaVencimiento");
             modelo.addRow(arr);
-            impr(arr);
+            //impr(arr);
         }
 
         database.close();
@@ -377,7 +377,7 @@ public class Cliente {
         Statement stmt = database.createStatement();
         ResultSet rs = stmt.executeQuery(selectSql);
 
-        System.out.println(rs.getInt("tipo"));
+        //System.out.println(rs.getInt("tipo"));
         if (rs.getInt("tipo") == 0){
             database.close();
             return "Deposito en Efectivo";
