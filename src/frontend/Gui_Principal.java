@@ -144,7 +144,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbInicio.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbInicio.setForeground(new java.awt.Color(255, 255, 255));
         LbInicio.setText("Inicio");
-        PanelInicio.add(LbInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelInicio.add(LbInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepInicio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -184,7 +184,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbDeposito.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbDeposito.setForeground(new java.awt.Color(255, 255, 255));
         LbDeposito.setText("Depositos");
-        PanelDeposito.add(LbDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelDeposito.add(LbDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepDeposito.setBackground(new java.awt.Color(18, 90, 173));
 
@@ -224,7 +224,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbTransferencia.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbTransferencia.setForeground(new java.awt.Color(255, 255, 255));
         LbTransferencia.setText("Transferencias");
-        PanelTransferencia.add(LbTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelTransferencia.add(LbTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepTransferencia.setBackground(new java.awt.Color(18, 90, 173));
         SepTransferencia.setForeground(new java.awt.Color(18, 90, 173));
@@ -265,7 +265,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbServicios.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbServicios.setForeground(new java.awt.Color(255, 255, 255));
         LbServicios.setText("Servicios");
-        PanelServicios.add(LbServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelServicios.add(LbServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepServicios.setBackground(new java.awt.Color(18, 90, 173));
         SepServicios.setForeground(new java.awt.Color(18, 90, 173));
@@ -306,7 +306,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbServicios1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbServicios1.setForeground(new java.awt.Color(255, 255, 255));
         LbServicios1.setText("Tarjetas");
-        PanelTarjetas.add(LbServicios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelTarjetas.add(LbServicios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepTarjetas.setBackground(new java.awt.Color(18, 90, 173));
         SepTarjetas.setForeground(new java.awt.Color(18, 90, 173));
@@ -347,7 +347,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbSaldo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbSaldo.setForeground(new java.awt.Color(255, 255, 255));
         LbSaldo.setText("Saldo de cuenta");
-        PanelSaldo.add(LbSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelSaldo.add(LbSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepSaldo.setBackground(new java.awt.Color(18, 90, 173));
         SepSaldo.setForeground(new java.awt.Color(18, 90, 173));
@@ -388,7 +388,7 @@ public class Gui_Principal extends javax.swing.JFrame {
         LbHistorial.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LbHistorial.setForeground(new java.awt.Color(255, 255, 255));
         LbHistorial.setText("Historial");
-        PanelHistorial.add(LbHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, 40));
+        PanelHistorial.add(LbHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 40));
 
         SepHistorial.setBackground(new java.awt.Color(18, 90, 173));
         SepHistorial.setForeground(new java.awt.Color(18, 90, 173));
